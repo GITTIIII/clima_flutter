@@ -4,8 +4,7 @@ import "../services/networking.dart";
 import "./location_screen.dart";
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:permission_handler/permission_handler.dart';
-
-const apiKey = "e714412cf39ce79ce81969d638b49e31";
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class LoadingScreen extends StatefulWidget {
   LoadingScreen({super.key});
@@ -20,7 +19,7 @@ class LoadingScreenState extends State<LoadingScreen> {
   Future<void> getLocation() async {
     await location.getCurrentLocation();
     var url = Uri.parse(
-        "https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=$apiKey");
+        "https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=${dotenv.env['API_KEY']}");
     NetworkHelper network = NetworkHelper(url);
     var data = await network.getData();
     Navigator.push(context, MaterialPageRoute(builder: (context) {
