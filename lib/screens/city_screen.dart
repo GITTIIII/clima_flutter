@@ -9,6 +9,7 @@ class CityScreen extends StatefulWidget {
 }
 
 class CityScreenState extends State<CityScreen> {
+  String cityName = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +27,9 @@ class CityScreenState extends State<CityScreen> {
               Align(
                 alignment: Alignment.topLeft,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   child: Icon(
                     Icons.arrow_back_ios,
                     size: 50.0,
@@ -35,10 +38,17 @@ class CityScreenState extends State<CityScreen> {
               ),
               Container(
                 padding: EdgeInsets.all(20.0),
-                child: null,
+                child: TextField(
+                    style: TextStyle(color: Colors.black),
+                    decoration: kTextFieldInputDecoration,
+                    onChanged: (value) => setState(() {
+                          cityName = value;
+                        })),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context, cityName);
+                },
                 child: Text(
                   'Get Weather',
                   style: kButtonTextStyle,

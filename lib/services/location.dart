@@ -1,5 +1,4 @@
 import 'package:geolocator/geolocator.dart';
-import "package:flutter/material.dart";
 
 class Location {
   double? latitude;
