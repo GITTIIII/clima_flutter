@@ -4,7 +4,7 @@ import '../utilities/constants.dart';
 class LocationScreen extends StatefulWidget {
   const LocationScreen({super.key, this.data});
 
-  final data;
+  final dynamic data;
 
   @override
   LocationScreenState createState() => LocationScreenState();
@@ -13,6 +13,13 @@ class LocationScreen extends StatefulWidget {
 class LocationScreenState extends State<LocationScreen> {
   @override
   Widget build(BuildContext context) {
+    final data = widget.data;
+    String temp = data['main']['temp'].toString();
+    String city = data['name'].toString();
+    String condition = data['weather'][0]['id'].toString();
+    print(temp);
+    print(city);
+    print(condition);
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -53,7 +60,7 @@ class LocationScreenState extends State<LocationScreen> {
                 child: Row(
                   children: <Widget>[
                     Text(
-                      data['main']['temp'],
+                      temp,
                       style: kTempTextStyle,
                     ),
                     Text(
@@ -66,7 +73,7 @@ class LocationScreenState extends State<LocationScreen> {
               Padding(
                 padding: EdgeInsets.only(right: 15.0),
                 child: Text(
-                  "It's 🍦 time in San Francisco!",
+                  "It's 🍦 time in $city!",
                   textAlign: TextAlign.right,
                   style: kMessageTextStyle,
                 ),
